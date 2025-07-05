@@ -32,16 +32,16 @@ $ ros2 run arm_detecting_controll ball_follower
 アームとボールが接触して時に, ボールをアームに付着して, アームを動かしたいが、付着した後の動作が行われない. （実際は機体の後側に手先がくるようにelbow_linkを動かす. ）
 ## デモ動画
 ###アーム動作
-[![Demo Video](https://mg.youtu.com/vi/grbSSv7qHhg/0.jpg)](https://youtu.be/grbSSv7qHhg)
+[![Demo Video](https://img.youtu.com/vi/grbSSv7qHhg/0.jpg)](https://youtu.be/grbSSv7qHhg)
 
 ###Attach付きアーム動作（できていない）
 [![Demo Video](https://img.youtube.com/vi/po6zorUj3AM/0.jpg)](https://youtu.be/po6zorUj3AM)
 
 ## 使用パッケージ
 - gazebo_ros2_control
-[!URL](https://github.com/ros-controls/gazebo_ros2_control)
+[URL](https://github.com/ros-controls/gazebo_ros2_control)
 - gazebo_ros2_link_attacher
-[!URL](https://github.com/yliu213/gazebo_ros2_link_attacher)
+[URL](https://github.com/yliu213/gazebo_ros2_link_attacher)
 
 
 ## 使用ノード
