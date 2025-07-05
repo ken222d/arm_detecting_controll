@@ -6,6 +6,10 @@
 ## 使い方
 - アームの動作
 ```bash
+cd ~/ros2_ws
+colcon build
+source install/setup.bash
+
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
 #ターミナル２
@@ -18,10 +22,14 @@ $ ros2 run arm_detecting_controll ball_follower
 
 - Attach付きアーム動作
 ```bash
+cd ~/ros2_ws
+colcon build
+source install/setup.bash
+
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
 #ターミナル２
-$ ros2 run arm_detecting_controll attach_arm_ball.py
+$ ros2 run arm_detecting_controll attach_arm_ball
 #ターミナル３
 $ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
 #ターミナル４
