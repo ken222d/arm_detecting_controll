@@ -4,6 +4,11 @@
 このパッケージには, 知能ロボットコンテストのシミュレーション環境とロボットの動作プログラムがあります. 
 
 ## 使い方
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/ken222d/arm_detecting_controll
+```
+
 - アームの動作
 ```bash
 cd ~/ros2_ws
@@ -61,7 +66,7 @@ $ ros2 run arm_detecting_controll ball_follower
 - ball_follower 車輪の制御ノード
 
 ## 使用ソフトウェア
-- ROS 2 HuMble
+- ROS 2 Humble
 - Gazebo Classic
 
 ## 環境
