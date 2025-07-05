@@ -31,10 +31,12 @@ $ ros2 run arm_detecting_controll ball_follower
 ## Issue
 アームとボールが接触して時に, ボールをアームに付着して, アームを動かしたいが、付着した後の動作が行われない. （実際は機体の後側に手先がくるようにelbow_linkを動かす. ）
 ## デモ動画
-###アーム動作
+- アーム動作
+
 [![Demo Video](https://img.youtube.com/vi/grbSSv7qHhg/0.jpg)](https://youtu.be/grbSSv7qHhg)
 
-###Attach付きアーム動作（できていない）
+- Attach付きアーム動作（できていない）
+
 [![Demo Video](https://img.youtube.com/vi/po6zorUj3AM/0.jpg)](https://youtu.be/po6zorUj3AM)
 
 ## 使用パッケージ
