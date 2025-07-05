@@ -4,7 +4,7 @@
 このパッケージには, 知能ロボットコンテストのシミュレーション環境とロボットの動作プログラムがあります. 
 
 ## 使い方
-###アームの動作
+- アームの動作
 ```bash
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
@@ -16,7 +16,7 @@ $ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
 $ ros2 run arm_detecting_controll ball_follower
 ```
 
-###Attach付きアーム動作
+- Attach付きアーム動作
 ```bash
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
