@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="maze">
+    <!-- worldタグ内に追加 -->
+    <plugin name="link_attacher_plugin" filename="libgazebo_ros2_link_attacher_plugin.so"/>
+
+    <physics name="default_physics" default="true" type="ode">
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+    <include>
+      <name>sun</name>
+      <uri>model://sun</uri>
+    </include>
+    <light name="point_light" type="point">
+      <pose>0 0 1 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.1 0.1 0.1 1.0</specular>
+      <attenuation>
+        <range>10</range>
+        <constant>0.5</constant>
+        <linear>0.5</linear>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <cast_shadows>false</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <include>
+      <name>sim_world</name>
+      <uri>model://maze</uri>
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+    <model name="test_ball1">
+      <pose>0.4 0.0 1 0 0 0</pose>
+      <link name="ball_link1">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Blue</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="test_ball2">
+      <pose>0.6 -0.1 1 0 0 0</pose>
+      <link name="ball_link2">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="test_ball3">
+      <pose>0.6 0.1 1 0 0 0</pose>
+      <link name="ball_link3">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.033</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Yellow</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
