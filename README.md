@@ -13,7 +13,7 @@ $ ros2 run arm_detecting_controll arm_controll
 $ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
 #ターミナル４
 $ ros2 run arm_detecting_controll ball_follower
-
+```
 
 
 ## Issue
