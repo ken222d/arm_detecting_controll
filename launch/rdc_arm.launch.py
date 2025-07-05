@@ -26,7 +26,7 @@ def generate_launch_description():
             Node(
                 package="gazebo_ros",
                 executable="spawn_entity.py",
-                arguments=["-entity","sim_py_01", "-b", "-file", urdf_file,],
+                arguments=["-entity","arm_detecting_controll", "-b", "-file", urdf_file,],
             ),
             Node(
                 package="robot_state_publisher",

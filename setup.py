@@ -37,6 +37,7 @@ setup(
            'multi_color_ball_detector = arm_detecting_controll.multi_color_ball_detector:main',
            'ball_follower = arm_detecting_controll.ball_follower:main',
            'arm_controll = arm_detecting_controll.arm_controll:main',
+           'attach_arm_ball = arm_detecting_controll.attach_arm_ball:main',
         ],
    },
 )

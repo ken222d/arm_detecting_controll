@@ -4,6 +4,7 @@
 このパッケージには, 知能ロボットコンテストのシミュレーション環境とロボットの動作プログラムがあります. 
 
 ## 使い方
+###アームの動作
 ```bash
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
@@ -15,11 +16,25 @@ $ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
 $ ros2 run arm_detecting_controll ball_follower
 ```
 
+###Attach付きアーム動作
+```bash
+#ターミナル１
+$ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
+#ターミナル２
+$ ros2 run arm_detecting_controll attach_arm_ball.py
+#ターミナル３
+$ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
+#ターミナル４
+$ ros2 run arm_detecting_controll ball_follower
+```
 
 ## Issue
 アームとボールが接触して時に, ボールをアームに付着して, アームを動かしたいが、付着した後の動作が行われない. （実際は機体の後側に手先がくるようにelbow_linkを動かす. ）
 ## デモ動画
+###アーム動作
+[![Demo Video](https://youtu.be/grbSSv7qHhg/0.jpg)](https://youtu.be/grbSSv7qHhg)
 
+###Attach付きアーム動作（できていない）
 [![Demo Video](https://img.youtube.com/vi/po6zorUj3AM/0.jpg)](https://youtu.be/po6zorUj3AM)
 
 ## 使用パッケージ
@@ -30,7 +45,8 @@ $ ros2 run arm_detecting_controll ball_follower
 
 
 ## 使用ノード
-- arm_controll アームの制御ノード
+- arm_controll アームの動作制御ノード
+- attach_arm_ball Attach付きアーム動作制御ノード
 - multi_color_ball_detector カメラノード
 - ball_follower 車輪の制御ノード
 

@@ -39,7 +39,7 @@ class BallFollower(Node):
 
             self.get_logger().info(f"x_offset: {x_offset:.3f}, distance: {distance:.3f}")
 
-            if distance <= 0.4:
+            if distance <= 0.222:
                 self.get_logger().info("ボールを取れ！")
                 self.target_reached = True
                 twist.linear.x = 0.0
