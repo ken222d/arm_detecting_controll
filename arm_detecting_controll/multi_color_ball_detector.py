@@ -15,7 +15,9 @@ class MultiColorBallDetector(Node):
         # パブリッシャ（座標 + 色）
         self.publisher_ = self.create_publisher(Point, '/ball_position_closest', 10)
         self.color_pub = self.create_publisher(String, '/ball_position_closest_color', 10)
-        # カメラ画像のサブスクライバ
+        self.mode_pub = self.create_publisher(Bool, '/line_trace_mode', 10)  # ← 追加
+        self.line_trace_stopped = False
+    # カメラ画像のサブスクライバ
         self.subscription = self.create_subscription(
             Image,
             '/wheel_robot_simple/camera/image_raw',
@@ -57,6 +59,12 @@ class MultiColorBallDetector(Node):
             # 最も近いボールを決定
             if detected_balls:
                 closest = min(detected_balls, key=lambda b: b['depth'])
+                
+                if not self.line_trace_stopped:
+                    self.get_logger().info("Ball found! Stopping line trace.")
+                    self.mode_pub.publish(Bool(data=False))
+                    self.line_trace_stopped = True
+
                 # 白で強調表示
                 x, y, r = closest['center']
                 cv2.circle(frame, (int(x), int(y)), int(r), self.color_bgr['closest'], 2)

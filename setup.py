@@ -27,10 +27,10 @@ setup(
    ] + generate_data_files('share/' + package_name + '/', 'models'),
    install_requires=['setuptools'],
    zip_safe=True,
-   maintainer='',
-   maintainer_email='',
-   description='TODO: Package description',
-   license='TODO: License declaration',
+   maintainer='Kenta Ishizeki',
+   maintainer_email='a.w.g.d0201@icloud.com',
+   description='catch the ball with arm',
+   license='BSD-3-Clause',
    tests_require=['pytest'],
    entry_points={
        'console_scripts': [
@@ -38,6 +38,9 @@ setup(
            'ball_follower = arm_detecting_controll.ball_follower:main',
            'arm_controll = arm_detecting_controll.arm_controll:main',
            'attach_arm_ball = arm_detecting_controll.attach_arm_ball:main',
+           'linetrace_controller = arm_detecting_controll.linetrace_controller:main',
+           'linetrace_judgement = arm_detecting_controll.linetrace_judgement:main',
+           'teleop_motor = arm_detecting_controll.teleop_motor:main',
         ],
    },
 )

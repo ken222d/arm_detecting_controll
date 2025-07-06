@@ -12,7 +12,7 @@
   <link name="base_link"/>
 
   <joint name="body_joint" type="fixed">
-    <origin xyz="-0.6 -0.8 0.4" rpy="0.0 0.0 1.5708"/>
+    <origin xyz="-0.3 0.0 0.2" rpy="0.0 0.0 -1.5708"/>
     <parent link="base_link"/>
     <child link="body_link"/>
   </joint>
@@ -30,13 +30,13 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.7"/>
+      <mass value="1.0"/>
       <inertia ixx="0.008333333" ixy="0.0" ixz="0.0" iyy="0.014166667" iyz="0.0" izz="0.020833333"/>
     </inertial>
   </link>
 
   <joint name="back_ball_joint" type="fixed">
-    <origin xyz="-0.13 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <origin xyz="-0.13 0.0 -0.022" rpy="0.0 0.0 0.0"/>
     <parent link="body_link"/>
     <child link="back_ball_link"/>
   </joint>
@@ -44,17 +44,17 @@
   <link name="back_ball_link">
     <visual>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.015"/>
       </geometry>
       <material name="grey"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.015"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.095"/>
+      <mass value="0.03"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
@@ -72,7 +72,7 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.060"/>
+      <mass value="0.06"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
@@ -90,7 +90,7 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.060"/>
+      <mass value="0.08"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
@@ -108,7 +108,7 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.220"/>
+      <mass value="0.08"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
@@ -151,17 +151,17 @@
   <link name="left_wheel_link">
     <visual>
       <geometry>
-        <cylinder radius="0.02" length="0.003"/>
+        <cylinder radius="0.036" length="0.04"/>
       </geometry>
       <material name="red"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.02" length="0.003"/>
+        <cylinder radius="0.036" length="0.04"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.120"/>
+      <mass value="0.2"/>
       <inertia ixx="0.000285867" ixy="0.0" ixz="0.0" iyy="0.000285867" iyz="0.0" izz="0.0005184"/>
     </inertial>
   </link>
@@ -176,17 +176,17 @@
   <link name="right_wheel_link">
     <visual>
       <geometry>
-        <cylinder radius="0.02" length="0.003"/>
+        <cylinder radius="0.036" length="0.04"/>
       </geometry>
       <material name="red"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.02" length="0.003"/>
+        <cylinder radius="0.036" length="0.04"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.120"/>
+      <mass value="0.2"/>
       <inertia ixx="0.000285867" ixy="0.0" ixz="0.0" iyy="0.000285867" iyz="0.0" izz="0.0005184"/>
     </inertial>
   </link>
@@ -215,33 +215,10 @@
   <!-- ここからカメラ追加 -->
 
   <joint name="camera_joint" type="fixed">
-    <origin xyz="0.13 0 0.01" rpy="0 0 0"/>
+    <origin xyz="0.15 0 0.01" rpy="0 0 0"/>
     <parent link="body_link"/>
     <child link="camera_link"/>
   </joint>
-
-  <joint name="linetrace_joint2" type="fixed">
-    <origin xyz="0.125 0.024 -0.015" rpy="0 1.5708 0"/>
-    <parent link="body_link"/>
-    <child link="linetrace_link2"/>
-  </joint>
-  <joint name="linetrace_joint3" type="fixed">
-    <origin xyz="0.125 0.008 -0.015" rpy="0 1.5708 0"/>
-    <parent link="body_link"/>
-    <child link="linetrace_link3"/>
-  </joint>
-
-  <joint name="linetrace_joint4" type="fixed">
-    <origin xyz="0.125 -0.008 -0.015" rpy="0 1.5708 0"/>
-    <parent link="body_link"/>
-    <child link="linetrace_link4"/>
-  </joint>
-  <joint name="linetrace_joint5" type="fixed">
-    <origin xyz="0.125 -0.024 -0.015" rpy="0 1.5708 0"/>
-    <parent link="body_link"/>
-    <child link="linetrace_link5"/>
-  </joint>
-
 
   <link name="camera_link">
     <visual>
@@ -256,84 +233,10 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.070"/>
+      <mass value="0.1"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
-
-  <link name="linetrace_link2">
-    <visual>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.0001"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
-  </link>
-  
-  <link name="linetrace_link3">
-    <visual>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.0001"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
-  </link>
-  
-  <link name="linetrace_link4">
-    <visual>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.0001"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
-  </link>
-
-  <link name="linetrace_link5">
-    <visual>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.002 0.002 0.002"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.0001"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
-  </link>
-
-
   <gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
@@ -381,7 +284,7 @@
       <update_rate>30.0</update_rate>
       <visualize>true</visualize>
       <camera>
-        <horizontal_fov>0.9599</horizontal_fov>
+        <horizontal_fov>1.39626</horizontal_fov>
         <image>
           <width>640</width>
           <height>480</height>
@@ -403,124 +306,6 @@
       </plugin>
     </sensor>
   </gazebo>
-  
-  <gazebo reference="linetrace_link2">
-    <sensor name="linetrace_sensor2" type="camera">
-      <always_on>true</always_on>
-      <update_rate>30.0</update_rate>
-      <visualize>true</visualize>
-      <camera>
-        <horizontal_fov>0.1745</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.001</near>
-          <far>0.05</far>
-        </clip>
-      </camera>
-      <plugin name="linetrace_sensor2" filename="libgazebo_ros_camera.so">
-        <ros>
-          <namespace>/wheel_robot_simple</namespace>
-        </ros>
-        <camera_name>linetrace2</camera_name>
-        <image_topic_name>linetrace2/image_raw</image_topic_name>
-        <camera_info_topic_name>linetrace2/camera_info</camera_info_topic_name>
-        <frame_name>linetrace_link2</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo>
-
-  <gazebo reference="linetrace_link3">
-    <sensor name="linetrace_sensor3" type="camera">
-      <always_on>true</always_on>
-      <update_rate>30.0</update_rate>
-      <visualize>true</visualize>
-      <camera>
-        <horizontal_fov>0.1745</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.001</near>
-          <far>0.05</far>
-        </clip>
-      </camera>
-      <plugin name="linetrace_sensor3" filename="libgazebo_ros_camera.so">
-        <ros>
-          <namespace>/wheel_robot_simple</namespace>
-        </ros>
-        <camera_name>linetrace3</camera_name>
-        <image_topic_name>linetrace3/image_raw</image_topic_name>
-        <camera_info_topic_name>linetrace3/camera_info</camera_info_topic_name>
-        <frame_name>linetrace_link3</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo>
-
-  <gazebo reference="linetrace_link4">
-    <sensor name="linetrace_sensor4" type="camera">
-      <always_on>true</always_on>
-      <update_rate>30.0</update_rate>
-      <visualize>true</visualize>
-      <camera>
-        <horizontal_fov>0.1745</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.001</near>
-          <far>0.05</far>
-        </clip>
-      </camera>
-      <plugin name="linetrace_sensor4" filename="libgazebo_ros_camera.so">
-        <ros>
-          <namespace>/wheel_robot_simple</namespace>
-        </ros>
-        <camera_name>linetrace4</camera_name>
-        <image_topic_name>linetrace4/image_raw</image_topic_name>
-        <camera_info_topic_name>linetrace4/camera_info</camera_info_topic_name>
-        <frame_name>linetrace_link4</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo>
-  
-  <gazebo reference="linetrace_link5">
-    <sensor name="linetrace_sensor5" type="camera">
-      <always_on>true</always_on>
-      <update_rate>30.0</update_rate>
-      <visualize>true</visualize>
-      <camera>
-        <horizontal_fov>0.1745</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.001</near>
-          <far>0.05</far>
-        </clip>
-      </camera>
-      <plugin name="linetrace_sensor5" filename="libgazebo_ros_camera.so">
-        <ros>
-          <namespace>/wheel_robot_simple</namespace>
-        </ros>
-        <camera_name>linetrace5</camera_name>
-        <image_topic_name>linetrace5/image_raw</image_topic_name>
-        <camera_info_topic_name>linetrace5/camera_info</camera_info_topic_name>
-        <frame_name>linetrace_link5</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo>
-
-
   <gazebo>
     <plugin name="link_attacher_plugin" filename="libgazebo_ros2_link_attacher_plugin.so"/>
   </gazebo>
