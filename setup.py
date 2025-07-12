@@ -41,6 +41,7 @@ setup(
            'linetrace_controller = arm_detecting_controll.linetrace_controller:main',
            'linetrace_judgement = arm_detecting_controll.linetrace_judgement:main',
            'teleop_motor = arm_detecting_controll.teleop_motor:main',
+           'straight_driver = arm_detecting_controll.straight_driver:main',
         ],
    },
 )

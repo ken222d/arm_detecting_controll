@@ -1,0 +1,563 @@
+<robot name="wheel_robot_simple">
+  <material name="grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+  </material> 
+
+  <link name="base_link"/>
+
+  <joint name="body_joint" type="fixed">
+    <origin xyz="-0.6 -0.8 0.4" rpy="0.0 0.0 1.5708"/>
+    <parent link="base_link"/>
+    <child link="body_link"/>
+  </joint>
+
+  <link name="body_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/body.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/body.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.7"/>
+      <inertia ixx="0.008333333" ixy="0.0" ixz="0.0" iyy="0.014166667" iyz="0.0" izz="0.020833333"/>
+    </inertial>
+  </link>
+
+  <joint name="back_ball_joint" type="fixed">
+    <origin xyz="-0.13 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="body_link"/>
+    <child link="back_ball_link"/>
+  </joint>
+
+  <link name="back_ball_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/castor.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/castor.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.095"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="sholder_base_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/sholder_base.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/sholder_base.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.060"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="sholder_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/sholder_link.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/sholder_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.060"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="elbow_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/elbow_link.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/elbow_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.220"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="fan_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/fan.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/fan.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.220"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+
+  <!-- ====================== -->
+  <!--        JOINTS          -->
+  <!-- ====================== -->
+
+  <joint name="sholder_joint" type="fixed">
+    <origin xyz="0 0 0.01" rpy="0.0 0.0 -1.5708"/>
+    <parent link="body_link"/>
+    <child link="sholder_base_link"/>
+  </joint>
+
+  <joint name="sholder_arm" type="revolute">
+    <origin xyz="0 0.02 0.032" rpy="0.0 0.0 0.0"/>
+    <parent link="sholder_base_link"/>
+    <child link="sholder_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.5708" upper="1.5708" effort="20.0" velocity="10"/>
+    <dynamics damping="0.1"/>
+  </joint>
+
+  <joint name="elbow_arm" type="revolute">
+    <origin xyz="0 0 0.065" rpy="0.0 0.0 0.0"/>
+    <parent link="sholder_link"/>
+    <child link="elbow_link"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-3.1416" upper="1.8326" effort="20.0" velocity="10"/>
+    <dynamics damping="0.1"/>
+  </joint>
+
+  <joint name="fan" type="fixed">
+    <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+    <parent link="elbow_link"/>
+    <child link="fan_link"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-3.1416" upper="1.8326" effort="20.0" velocity="10"/>
+    <dynamics damping="0.1"/>
+  </joint>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <origin xyz="0.1 0.1 -0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="body_link"/>
+    <child link="left_wheel_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+
+  <link name="left_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/motor_left.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/motor_left.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.120"/>
+      <inertia ixx="0.000285867" ixy="0.0" ixz="0.0" iyy="0.000285867" iyz="0.0" izz="0.0005184"/>
+    </inertial>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <origin xyz="0.1 -0.1 -0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="body_link"/>
+    <child link="right_wheel_link"/>
+    <axis xyz="0.0 0.0 -1.0"/>
+  </joint>
+
+  <link name="right_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/DAE/motor_right.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/ikenta/ros2_ws/src/arm_detecting_controll/models/maze/STL/motor_right.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.120"/>
+      <inertia ixx="0.000285867" ixy="0.0" ixz="0.0" iyy="0.000285867" iyz="0.0" izz="0.0005184"/>
+    </inertial>
+  </link>
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so ">
+      <ros>
+        <namespace>/wheel_robot_simple</namespace>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.2</wheel_separation>
+      <wheel_diameter>0.072</wheel_diameter>
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <update_rate>30</update_rate>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- ここからカメラ追加 -->
+
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.13 0 0.01" rpy="0 0 0"/>
+    <parent link="body_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <joint name="linetrace_joint2" type="fixed">
+    <origin xyz="0.125 0.024 -0.015" rpy="0 1.5708 0"/>
+    <parent link="body_link"/>
+    <child link="linetrace_link2"/>
+  </joint>
+  <joint name="linetrace_joint3" type="fixed">
+    <origin xyz="0.125 0.008 -0.015" rpy="0 1.5708 0"/>
+    <parent link="body_link"/>
+    <child link="linetrace_link3"/>
+  </joint>
+
+  <joint name="linetrace_joint4" type="fixed">
+    <origin xyz="0.125 -0.008 -0.015" rpy="0 1.5708 0"/>
+    <parent link="body_link"/>
+    <child link="linetrace_link4"/>
+  </joint>
+  <joint name="linetrace_joint5" type="fixed">
+    <origin xyz="0.125 -0.024 -0.015" rpy="0 1.5708 0"/>
+    <parent link="body_link"/>
+    <child link="linetrace_link5"/>
+  </joint>
+
+
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.025 0.07 0.017"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.07 0.017"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.070"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="linetrace_link2">
+    <visual>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+  
+  <link name="linetrace_link3">
+    <visual>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+  
+  <link name="linetrace_link4">
+    <visual>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <link name="linetrace_link5">
+    <visual>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.002 0.002 0.002"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0001"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
+      <parameters>/home/ikenta/ros2_ws/src/arm_detecting_controll/config/rdc_arm.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="sholder_arm">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <command_interface name="velocity">
+        <param name="min">-3.15</param>
+        <param name="max">3.15</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+      <param name="initial_position">0.0</param>   
+    </joint>
+    <joint name="elbow_arm">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <command_interface name="velocity">
+        <param name="min">-3.15</param>
+        <param name="max">3.15</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+      <param name="initial_position">0.0</param>   
+    </joint>
+  </ros2_control>
+
+  <gazebo reference="camera_link">
+    <sensor name="camera_sensor" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>0.9599</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/wheel_robot_simple</namespace>
+        </ros>
+        <camera_name>camera</camera_name>
+        <image_topic_name>image_raw</image_topic_name>
+        <camera_info_topic_name>camera_info</camera_info_topic_name>
+        <frame_name>camera_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  
+  <gazebo reference="linetrace_link2">
+    <sensor name="linetrace_sensor2" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>0.1745</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>0.05</far>
+        </clip>
+      </camera>
+      <plugin name="linetrace_sensor2" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/wheel_robot_simple</namespace>
+        </ros>
+        <camera_name>linetrace2</camera_name>
+        <image_topic_name>linetrace2/image_raw</image_topic_name>
+        <camera_info_topic_name>linetrace2/camera_info</camera_info_topic_name>
+        <frame_name>linetrace_link2</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="linetrace_link3">
+    <sensor name="linetrace_sensor3" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>0.1745</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>0.05</far>
+        </clip>
+      </camera>
+      <plugin name="linetrace_sensor3" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/wheel_robot_simple</namespace>
+        </ros>
+        <camera_name>linetrace3</camera_name>
+        <image_topic_name>linetrace3/image_raw</image_topic_name>
+        <camera_info_topic_name>linetrace3/camera_info</camera_info_topic_name>
+        <frame_name>linetrace_link3</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="linetrace_link4">
+    <sensor name="linetrace_sensor4" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>0.1745</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>0.05</far>
+        </clip>
+      </camera>
+      <plugin name="linetrace_sensor4" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/wheel_robot_simple</namespace>
+        </ros>
+        <camera_name>linetrace4</camera_name>
+        <image_topic_name>linetrace4/image_raw</image_topic_name>
+        <camera_info_topic_name>linetrace4/camera_info</camera_info_topic_name>
+        <frame_name>linetrace_link4</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  
+  <gazebo reference="linetrace_link5">
+    <sensor name="linetrace_sensor5" type="camera">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>0.1745</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.001</near>
+          <far>0.05</far>
+        </clip>
+      </camera>
+      <plugin name="linetrace_sensor5" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/wheel_robot_simple</namespace>
+        </ros>
+        <camera_name>linetrace5</camera_name>
+        <image_topic_name>linetrace5/image_raw</image_topic_name>
+        <camera_info_topic_name>linetrace5/camera_info</camera_info_topic_name>
+        <frame_name>linetrace_link5</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="elbow_link">
+    <plugin name="vacuum_gripper" filename="libgazebo_ros_vacuum_gripper.so">
+      <ros>
+        <namespace>/vacuum_gripper</namespace>
+      </ros>
+      <link_name>elbow_link</link_name>
+      <max_force>1000</max_force>
+      <max_distance>200.0</max_distance>
+    </plugin>
+  </gazebo>
+
+
+</robot>

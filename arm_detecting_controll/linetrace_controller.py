@@ -25,9 +25,11 @@ class LineTraceController(Node):
         self.line_trace_enabled = True
         self.create_subscription(Bool, '/line_trace_mode', self.mode_callback, 10)
 
-        self.left_color = None  # 'gray', 'black', or None
-        self.right_color = None
-
+        self.left2_color = None
+        self.left1_color = None  # 'gray', 'black', or None
+        self.right1_color = None
+        self.right2_color = None
+        
         self.timer = self.create_timer(0.1, self.control_loop)
 
     def mode_callback(self, msg: Bool):
@@ -76,35 +78,89 @@ class LineTraceController(Node):
             self.cmd_pub.publish(twist)
             return
 
-        base_speed = 0.15
+        base_speed = 0.1
         adjust_speed = 2.0
         
         self.get_logger().info(f"[LineTrace] 2: {self.left2_color}, 3: {self.left1_color}, 4: {self.right1_color}, 5: {self.right2_color}")
         # ロジック：黒+グレーの組み合わせで判断
-        if self.left1_color == 'gray' and self.right1_color == 'black':
-            # 右が黒 → 右に旋回（左が速い）
-            twist.linear.x = base_speed * 0.2
-            twist.angular.z = -adjust_speed
-        elif self.left1_color == 'black' and self.right1_color == 'gray':
-            # 左が黒 → 左に旋回（右が速い）
-            twist.linear.x = base_speed * 0.2
-            twist.angular.z = adjust_speed
-        elif self.left2_color == 'gray' and self.right2_color == 'black':
-            # 左が黒 → 左に旋回（右が速い）
+        if self.left1_color == 'gray' and self.right1_color == 'black' and self.left2_color == 'gray' and self.right2_color == 'gray':
+            # 1
+            twist.linear.x = base_speed * 0.1
+            twist.angular.z = -adjust_speed * 0.8
+        
+        elif self.left1_color == 'black' and self.right1_color == 'gray' and self.left2_color == 'gray' and self.right2_color == 'gray':
+            # 2
+            twist.linear.x = base_speed * 0.05
+            twist.angular.z = adjust_speed*0.8
+
+        elif self.left1_color == 'black' and self.right1_color == 'gray' and self.left2_color == 'black' and self.right2_color == 'gray':
+            # 3
+            twist.linear.x = base_speed * 0.005
+            twist.angular.z = adjust_speed*1.0
+        elif self.left1_color == 'gray' and self.right1_color == 'black' and self.left2_color == 'gray' and self.right2_color == 'black':
+            # 4
+            twist.linear.x = base_speed * 0.025
+            twist.angular.z = -adjust_speed*1.0
+
+        elif self.left1_color == 'gray' and self.right1_color == 'gray' and self.left2_color == 'gray' and self.right2_color == 'black':
+            # 5
             twist.linear.x = base_speed * 0.0
-            twist.angular.z = -adjust_speed * 3
-        elif self.left2_color == 'black' and self.right2_color == 'gray':
-            # 左が黒 → 左に旋回（右が速い）
+            twist.angular.z = -adjust_speed *2.0
+        
+        elif self.left1_color == 'gray' and self.right1_color == 'gray' and self.left2_color == 'black' and self.right2_color == 'gray':
+            # 6
+            twist.linear.x = base_speed * 0.00025
+            twist.angular.z = adjust_speed * 2.0
+        
+        elif self.left1_color == 'black' and self.right1_color == 'black' and self.left2_color == 'gray' and self.right2_color == 'black':
+            # 7
+            twist.linear.x = base_speed * 0.0005
+            twist.angular.z = -adjust_speed * 0.5
+        
+        elif self.left1_color == 'black' and self.right1_color == 'black' and self.left2_color == 'black' and self.right2_color == 'gray':
+            # 8
+            twist.linear.x = base_speed * 0.00025
+            twist.angular.z = adjust_speed * 0.5
+        elif self.left1_color == 'black' and self.right1_color == 'gray' and self.left2_color == 'black' and self.right2_color == 'black':
+            # 9
             twist.linear.x = base_speed * 0.0
-            twist.angular.z = adjust_speed * 3
-        elif self.left1_color in ['gray', 'black'] and self.right1_color in ['gray', 'black']:
-            # 両方同じ系統（どちらもライン上）→ 直進
+            twist.angular.z = -adjust_speed * 1.0
+
+        elif self.left1_color == 'gray' and self.right1_color == 'black' and self.left2_color == 'black' and self.right2_color == 'black':
+            # 10
+            twist.linear.x = base_speed * 0.0
+            twist.angular.z = adjust_speed * 1.0
+        
+        elif self.left1_color == 'black' and self.right1_color == 'gray' and self.left2_color == 'gray' and self.right2_color == 'black':
+            # 11
+            twist.linear.x = base_speed * 0.0
+            twist.angular.z = -adjust_speed * 1.0
+
+        elif self.left1_color == 'gray' and self.right1_color == 'black' and self.left2_color == 'black' and self.right2_color == 'gray':
+            # 12
+            twist.linear.x = base_speed * 0.0
+            twist.angular.z = adjust_speed * 1.0
+
+        elif self.left1_color == 'black' and self.right1_color == 'black' and self.left2_color == 'gray' and self.right2_color == 'gray':
+            # 13
             twist.linear.x = base_speed
             twist.angular.z = 0.0
-        else:
-            # どちらもラインを見失った → 停止
-            twist.linear.x = base_speed
+        
+        elif self.left1_color == 'gray' and self.right1_color == 'gray' and self.left2_color == 'gray' and self.right2_color == 'gray':
+            # 14
+            twist.linear.x = base_speed * 2
             twist.angular.z = 0.0
+        
+        elif self.left1_color == 'black' and self.right1_color == 'black' and self.left2_color == 'black' and self.right2_color == 'black':
+            # 15
+            twist.linear.x = base_speed * 2
+            twist.angular.z = 0.0
+
+        elif self.left1_color == 'gray' and self.right1_color == 'gray' and self.left2_color == 'black' and self.right2_color == 'black':
+            # 16
+            twist.linear.x = -base_speed
+            twist.angular.z = 0.0
+
 
         self.cmd_pub.publish(twist)
 

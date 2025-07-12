@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.5">
   <world name="maze">
-    <!-- worldタグ内に追加 -->
-    <plugin name="link_attacher_plugin" filename="libgazebo_ros2_link_attacher_plugin.so"/>
 
     <physics name="default_physics" default="true" type="ode">
       <gravity>0 0 -9.8</gravity>
@@ -12,6 +10,7 @@
       <name>sun</name>
       <uri>model://sun</uri>
     </include>
+
     <light name="point_light" type="point">
       <pose>0 0 1 0 0 0</pose>
       <diffuse>1 1 1 1</diffuse>
@@ -25,27 +24,52 @@
       <cast_shadows>false</cast_shadows>
       <direction>0 0 -1</direction>
     </light>
+
     <include>
       <name>sim_world</name>
       <uri>model://maze</uri>
       <static>true</static>
       <pose>0 0 0 0 0 0</pose>
     </include>
+
+    <!-- -->
+    <!-- test_ball1（Blue） -->
+    <!-- -->
     <model name="test_ball1">
-      <pose>0.4 0.0 1 0 0 0</pose>
+      <pose>-0.4 0.0 1 0 0 0</pose>
       <link name="ball_link1">
-        <collision name="collision">
+        <inertial>
+          <mass>0.035</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+	<!-- 滑り＆跳ね防止 -->
+        <velocity_decay>
+          <linear>0.0</linear>
+          <angular>0.2</angular>
+        </velocity_decay>
+	<collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+		<mu2>0.5</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
         <visual name="visual">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
           <material>
             <script>
@@ -56,21 +80,45 @@
         </visual>
       </link>
     </model>
+
+    <!-- -->
+    <!-- test_ball2（Red） -->
+    <!-- -->
     <model name="test_ball2">
-      <pose>0.6 -0.1 1 0 0 0</pose>
+      <pose>-0.6 -0.1 1 0 0 0</pose>
       <link name="ball_link2">
-        <collision name="collision">
+        <inertial>
+          <mass>0.035</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+	<!-- 滑り＆跳ね防止 -->
+        <velocity_decay>
+          <linear>0.0</linear>
+          <angular>0.2</angular>
+        </velocity_decay>
+	<collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
         <visual name="visual">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
           <material>
             <script>
@@ -81,21 +129,45 @@
         </visual>
       </link>
     </model>
+
+    <!-- -->
+    <!-- test_ball3（Yellow） -->
+    <!-- -->
     <model name="test_ball3">
-      <pose>0.6 0.1 1 0 0 0</pose>
+      <pose>-0.6 0.1 1 0 0 0</pose>
       <link name="ball_link3">
-        <collision name="collision">
+        <inertial>
+          <mass>0.035</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+	<!-- 滑り＆跳ね防止 -->
+        <velocity_decay>
+          <linear>0.0</linear>
+          <angular>0.2</angular>
+        </velocity_decay>
+	<collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
         <visual name="visual">
           <geometry>
-            <sphere>
-              <radius>0.033</radius>
-            </sphere>
+            <sphere><radius>0.033</radius></sphere>
           </geometry>
           <material>
             <script>
@@ -109,3 +181,4 @@
 
   </world>
 </sdf>
+

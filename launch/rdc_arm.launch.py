@@ -8,7 +8,7 @@ from scripts import GazeboRosPaths
 
 def generate_launch_description():
     package_share_dir = get_package_share_directory("arm_detecting_controll")
-    urdf_file = os.path.join(package_share_dir, "urdf", "wheel_robot_simple.urdf")
+    urdf_file = os.path.join(package_share_dir, "urdf", "arm_robot.urdf")
     world_file = os.path.join(package_share_dir, 'world', 'maze.world')
     controller_file = os.path.join(package_share_dir, "config", "rdc_arm.yaml")
     with open(urdf_file, 'r') as inf:
@@ -45,6 +45,16 @@ def generate_launch_description():
                 package="controller_manager",
                 executable="spawner",
                 arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
+            ),
+            Node(
+                package="controller_manager",
+                executable="spawner",
+                arguments=["left_wheel_controller", "-c", "/controller_manager"],
+            ),
+            Node(
+                package="controller_manager",
+                executable="spawner",
+                arguments=["right_wheel_controller", "-c", "/controller_manager"],
             ),
         ]
     )
