@@ -3,6 +3,11 @@
 ## パッケージの説明
 このパッケージには, 知能ロボットコンテストに向けたシミュレーション環境とロボットの動作プログラムがあります. 
 
+## 動作説明
+カメラにボールが映るまでライントレースを行う. 
+ボールを検出したらライントレースを終了し目標ボールに接近. 
+目標ボールとの距離が近くなったら, アームを制御してボールを確保. 
+
 ## 使い方
 ```bash
 cd ~/ros2_ws/src
@@ -28,11 +33,11 @@ $ ros2 run arm_detecting_controll ball_follower
 ```
 
 ## デモ動画
-- アーム動作
+- ライントレース及びボール検出、接近
 
 [![Demo Video](https://img.youtube.com/vi/1C-Of6q_ZPg/0.jpg)](https://youtu.be/1C-Of6q_ZPg)
 
-- Attach付きアーム動作（できていない）
+- アーム動作
 
 [![Demo Video](https://img.youtube.com/vi/g60Mg9bKciM/0.jpg)](https://youtu.be/g60Mg9bKciM)
 
