@@ -30,17 +30,17 @@ $ ros2 run arm_detecting_controll ball_follower
 ## デモ動画
 - アーム動作
 
-[![Demo Video](https://img.youtu.com/vi/1C-Of6q_ZPg/0.jpg)](https://youtu.be/1C-Of6q_ZPg)
+[![Demo Video](https://img.youtube.com/vi/1C-Of6q_ZPg/0.jpg)](https://youtu.be/1C-Of6q_ZPg)
 
 - Attach付きアーム動作（できていない）
 
-[![Demo Video](https://img.youtu.com/vi/g60Mg9bKciM/0.jpg)](https://youtu.be/g60Mg9bKciM)
+[![Demo Video](https://img.youtube.com/vi/g60Mg9bKciM/0.jpg)](https://youtu.be/g60Mg9bKciM)
 
 ## 使用パッケージ
 - gazebo_ros2_control
 [URL](https://github.com/ros-controls/gazebo_ros2_control)
 - gazebo_ros2_link_attacher
-[URL](https://github.com/yliu213/gazebo_ros2_link_attacher)
+[URL](https://github.com/davidorchansky/gazebo_ros_link_attacher/tree/humble-devel)
 
 
 ## 使用ノード
@@ -61,7 +61,7 @@ $ ros2 run arm_detecting_controll ball_follower
 本プロジェクトの開発・検証にあたって, 以下のOSSツールをUbuntu上で使用しました（本リポジトリには含まれていません）:
 
 - [gazebo_ros2_link_attacher](https://github.com/davidorchansky/gazebo_ros_link_attacher/tree/humble-devel): Gazebo上でリンクを接続するためのROS 2パッケージ
-- [gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs): GazeboとROS 2のインターフェース
+- [gazebo_ros_control](https://github.com/ros-controls/gazebo_ros2_control): GazeboとROS 2のインターフェース
 
 これらのコードは本リポジトリに含まれていませんが, 検証・開発において活用しました. 
 
