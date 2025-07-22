@@ -35,7 +35,7 @@ $ ros2 run arm_detecting_controll ball_follower
 ## デモ動画
 - ライントレース及びボール検出、接近
 
-[![Demo Video](https://youtube.com/vi/m3qrZkw8Mq8/0.jpg)](https://youtu.be/m3qrZkw8Mq8)
+[![Demo Video](https://img.youtube.com/vi/m3qrZkw8Mq8/0.jpg)](https://youtu.be/m3qrZkw8Mq8)
 
 - アーム動作
 
