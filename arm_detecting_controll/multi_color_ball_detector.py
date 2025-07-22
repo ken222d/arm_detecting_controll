@@ -39,7 +39,7 @@ class MultiColorBallDetector(Node):
             'blue': ([100, 150, 50], [140, 255, 255]),
             'red1': ([0, 150, 50], [10, 255, 255]),
             'red2': ([170, 150, 50], [180, 255, 255]),
-            'yellow': ([20, 150, 50], [35, 255, 255])
+            'yellow': ([20, 150, 160], [40, 255, 255])
         }
 
         self.color_bgr = {
@@ -115,14 +115,23 @@ class MultiColorBallDetector(Node):
         balls = []
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         for cnt in contours:
+            area = cv2.contourArea(cnt)
+            perimeter = cv2.arcLength(cnt, True)
+
+            if perimeter == 0:
+                continue
+
+            circularity = 4 * np.pi * area / (perimeter * perimeter)
             (x, y), radius = cv2.minEnclosingCircle(cnt)
-            if radius > 5:
-                depth = (self.ball_diameter * self.fx) / (2.0 * radius)
+            depth = (self.ball_diameter * self.fx) / (2.0 * radius)
+
+            if 5 < radius < 150 and circularity > 0.5 and depth < 2.5:
                 balls.append({'color': color, 'depth': depth, 'center': (x, y, radius)})
 
+            # 可視化
                 cv2.circle(frame, (int(x), int(y)), int(radius), self.color_bgr[color], 2)
                 cv2.putText(
-                    frame, color, (int(x) - 20, int(y) - int(radius) - 10),
+                    frame, f"{color} ({circularity:.2f})", (int(x)-20, int(y) - int(radius) - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_bgr[color], 1, cv2.LINE_AA
                 )
         return balls

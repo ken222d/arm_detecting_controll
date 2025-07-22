@@ -63,7 +63,7 @@ class BallFollower(Node):
             x_offset = (self.latest_msg.x - image_center) / self.fx
             distance = self.latest_msg.z
 
-            if distance <= 0.192 and abs(x_offset) <= 0.05:
+            if distance <= 0.2 and abs(x_offset) <= 0.05:
                 self.get_logger().info("Catch the ball!!!")
                 self.target_reached = True
                 twist.linear.x = 0.0
@@ -73,7 +73,7 @@ class BallFollower(Node):
                 if abs(x_offset) > 0.05:
                     twist.angular.z = -5.0 * x_offset
                 else:
-                    twist.linear.x = 0.1
+                    twist.linear.x = 0.08
         else:
             twist.angular.z = 0.4
 

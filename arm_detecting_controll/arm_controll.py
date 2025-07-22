@@ -10,6 +10,7 @@ from std_msgs.msg import String
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from gazebo_ros_link_attacher.srv import Attach
 from std_msgs.msg import Bool
+from geometry_msgs.msg import Twist
 
 
 class ArmControll(Node):
@@ -24,6 +25,8 @@ class ArmControll(Node):
             '/joint_trajectory_controller/joint_trajectory',
             10
         )
+        self.cmd_vel_pub = self.create_publisher(Twist, '/wheel_robot_simple/cmd_vel', 10)
+
         # ライントレース有効化用のPublisher
         self.line_trace_pub = self.create_publisher(Bool, '/line_trace_mode', 10)
 
@@ -41,7 +44,7 @@ class ArmControll(Node):
         self.get_logger().info("ArmControll node initialized.")
 
     def point_callback(self, msg: Point):
-        if msg.z > 0.192:
+        if msg.z > 0.2:
             self.get_logger().info("Ball too far. Ignoring.")
             return
         self.latest_position = msg
@@ -112,6 +115,14 @@ class ArmControll(Node):
         self.get_logger().info("Step 3: Return to initial pose")
 
         self.move_arm(shoulder=0.0, elbow=0.0)
+        # --- Step: Rotate 180 degrees ---
+        twist = Twist()
+        twist.angular.z = 10.0  # 正の値で左回転（右回りにしたければ -1.0）
+        self.cmd_vel_pub.publish(twist)
+
+        # 一瞬だけ回転 → 0.5秒後に停止してLineTrace再開
+        self.rotation_timer = self.create_timer(6.0, self.stop_rotation_and_resume_line_trace)
+
         self.final_wait_timer = self.create_timer(5.0, self.reset_motion)
 
     def move_arm(self, shoulder: float, elbow: float):
@@ -131,11 +142,20 @@ class ArmControll(Node):
         self.reached = False
         self.get_logger().info("Sequence complete. Ready for next ball.")
 
-    # ライントレース再開のためTrueを送信
+    def stop_rotation_and_resume_line_trace(self, timer_event):
+        self.rotation_timer.cancel()  # 明示的に停止
+        self.get_logger().info("Rotation complete. Resuming line trace.")
+
+        # 回転停止
+        twist = Twist()
+        twist.angular.z = 0.0
+        self.cmd_vel_pub.publish(twist)
+
+    # ライントレース再開
         msg = Bool()
         msg.data = True
         self.line_trace_pub.publish(msg)
-        self.get_logger().info("Line trace re-enabled.")
+        self.get_logger().info("Line trace re-enabled after turning.")
 
     def destroy_node(self):
         if self.timer:

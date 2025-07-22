@@ -12,12 +12,12 @@
     </include>
 
     <light name="point_light" type="point">
-      <pose>0 0 1 0 0 0</pose>
+      <pose>0 0 2 0 0 0</pose>
       <diffuse>1 1 1 1</diffuse>
       <specular>0.1 0.1 0.1 1.0</specular>
       <attenuation>
-        <range>15</range>
-        <constant>0.2</constant>
+        <range>10</range>
+        <constant>0.1</constant>
         <linear>0.08</linear>
         <quadratic>0</quadratic>
       </attenuation>

@@ -12,6 +12,9 @@
   <gazebo reference="body_link">
     <material>Gazebo/Gray</material>
   </gazebo>
+  <gazebo reference="back_ball_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
   <gazebo reference="sholder_base_link">
     <material>Gazebo/Black</material>
   </gazebo>
@@ -43,7 +46,7 @@
   <link name="base_link"/>
 
   <joint name="body_joint" type="fixed">
-    <origin xyz="-0.6 -0.7 0.4" rpy="0.0 0.0 -1.5708"/>
+    <origin xyz="-0.6 -0.4 0.4" rpy="0.0 0.0 1.5708"/>
     <parent link="base_link"/>
     <child link="body_link"/>
   </joint>
