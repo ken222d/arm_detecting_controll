@@ -1,7 +1,7 @@
 # arm_detecting_controll
 
 ## パッケージの説明
-このパッケージには, 知能ロボットコンテストのシミュレーション環境とロボットの動作プログラムがあります. 
+このパッケージには, 知能ロボットコンテストに向けたシミュレーション環境とロボットの動作プログラムがあります. 
 
 ## 使い方
 ```bash
@@ -18,39 +18,23 @@ source install/setup.bash
 #ターミナル１
 $ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
 #ターミナル２
+$ ros2 run arm_detecting_controll linetrace_controll
+#ターミナル３
 $ ros2 run arm_detecting_controll arm_controll
-#ターミナル３
+#ターミナル4
 $ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
-#ターミナル４
+#ターミナル5
 $ ros2 run arm_detecting_controll ball_follower
 ```
 
-- Attach付きアーム動作
-```bash
-cd ~/ros2_ws
-colcon build
-source install/setup.bash
-
-#ターミナル１
-$ ros2 launch arm_detecting_controll rdc_arm.launch.py #Gazebo起動
-#ターミナル２
-$ ros2 run arm_detecting_controll attach_arm_ball
-#ターミナル３
-$ ros2 run arm_detecting_controll multi_color_ball_detector #GUI起動
-#ターミナル４
-$ ros2 run arm_detecting_controll ball_follower
-```
-
-## Issue
-アームとボールが接触して時に, ボールをアームに付着して, アームを動かしたいが、付着した後の動作が行われない. （実際は機体の後側に手先がくるようにelbow_linkを動かす. ）
 ## デモ動画
 - アーム動作
 
-[![Demo Video](https://img.youtube.com/vi/grbSSv7qHhg/0.jpg)](https://youtu.be/grbSSv7qHhg)
+[![Demo Video](https://img.youtu.com/vi/1C-Of6q_ZPg/0.jpg)](https://youtu.be/1C-Of6q_ZPg)
 
 - Attach付きアーム動作（できていない）
 
-[![Demo Video](https://img.youtube.com/vi/po6zorUj3AM/0.jpg)](https://youtu.be/po6zorUj3AM)
+[![Demo Video](https://img.youtu.com/vi/g60Mg9bKciM/0.jpg)](https://youtu.be/g60Mg9bKciM)
 
 ## 使用パッケージ
 - gazebo_ros2_control
@@ -61,7 +45,7 @@ $ ros2 run arm_detecting_controll ball_follower
 
 ## 使用ノード
 - arm_controll アームの動作制御ノード
-- attach_arm_ball Attach付きアーム動作制御ノード
+- linetrace_controll付きアーム動作制御ノード
 - multi_color_ball_detector カメラノード
 - ball_follower 車輪の制御ノード
 
@@ -76,7 +60,7 @@ $ ros2 run arm_detecting_controll ball_follower
 
 本プロジェクトの開発・検証にあたって, 以下のOSSツールをUbuntu上で使用しました（本リポジトリには含まれていません）:
 
-- [gazebo_ros2_link_attacher](https://github.com/yliu213/gazebo_ros2_link_attacher): Gazebo上でリンクを接続するためのROS 2パッケージ
+- [gazebo_ros2_link_attacher](https://github.com/davidorchansky/gazebo_ros_link_attacher/tree/humble-devel): Gazebo上でリンクを接続するためのROS 2パッケージ
 - [gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs): GazeboとROS 2のインターフェース
 
 これらのコードは本リポジトリに含まれていませんが, 検証・開発において活用しました. 
